@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- status是否记录log4j2本身的event信息，默认是OFF -->
+<!-- OFF > FATAL > ERROR > WARN > INFO > DEBUG > TRACE > ALL -->
+<configuration status="OFF" monitorInterval="60">
+    <Properties>
+        <!-- 部署应用的名称,命名规则 :全部小写字母、中短横线、数字,与微服务命名,disconf中命名一致 -->
+        <property name="APPNAME" value="study-demo" />
+        <!-- 部署应用的端口号，用于一台服务器部署多台应用的情况,如果不需要，保持默认 -->
+               
+        <!-- <property name="PORT">${sys:crtServerPort:-8080}</property> -->
+        <!-- 定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径 -->
+        <property name="log.home_dir" value="E:/logs" />
+        <!-- 日志文件 -->
+        <property name="log.fileNamePrefix">${APPNAME}</property>
+        <!-- 日志最大的历史 30天 -->
+        <property name="log.maxHistory" value="30" />
+        <!-- 日志文件大小 -->
+        <property name="log.maxFileSize" value="10M" />
+        <!-- 日志文件最多个数 -->
+        <property name="log.rolloverStrategy" value="20" />
+        <!-- 日志级别 -->
+        <property name="log.level" value="trace" />
+        <!-- 日志文件的编码 -->
+        <property name="log.charset">UTF-8</property>
+        <property name="log.pattern.console" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{20} - %msg%n" />
+        <!-- 日志格式化输出-文件 -->
+        <!-- 日志格式说明： |日志时间|线程id|端口号|应用名称|类名|方法名|日志级别|traceId |输入参数|输出参数|耗时|任意多个扩展字段|具体打印的msg内容然后换行 <property name="log.pattern.file">|%d{yyyy-MM-dd HH:mm:ss.SSS}|%t|${PORT}|${APPNAME}|%logger|%M|%p|%X{MDCCRT_GUID_TRACEID}|###+%X{MDCCRT_EXTENTS}-###|##+%X{MDCCRT_INPUT_PARAM}-##|##+%X{MDCCRT_OUTPUT_PARAM}-##|%X{MDCCRT_COST_TIME}|%m%n</property> -->
+         
+        <property name="log.pattern.file" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{30} - %msg%n" />
+    </Properties>
+    <appenders>
+        <!-- 控制台输出 -->
+        <console name="Console" target="SYSTEM_OUT">
+            <PatternLayout>
+                <pattern>${log.pattern.console}</pattern>
+            </PatternLayout>
+            <!-- <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n"/> -->
+        </console>
+        <!-- all File --> 
+        <RollingRandomAccessFile name="FILE">
+            <filePattern>${log.home_dir}/%d{yyyy-MM-dd}/${log.fileNamePrefix}-all-%d{yyyyMMdd-HH}.%i.log.gz</filePattern>
+            <fileName>${log.home_dir}/all/${log.fileNamePrefix}-all.log</fileName>
+            <immediateFlush>false</immediateFlush>
+             <!-- 日志输出格式 -->
+            <PatternLayout>
+                <pattern>${log.pattern.file}</pattern>
+                <charset>${log.charset}</charset>
+            </PatternLayout>
+            <!-- 以下是日志压缩包配置 建议1天归档依次 -->
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1" />     
+                <SizeBaseDTriggeringPolicy size="${log.maxFileSize}" />
+            </Policies>
+            <DefaultRolloverStrategy max="${log.rolloverStrategy}" />
+            <Filters>
+                <!-- 显示所有信息 -->  
+                <ThresholdFilter onMismatch="DENY" onMatch="ACCEPT" level="TRACE" />
+            </Filters>
+        </RollingRandomAccessFile>
+        <!-- 以下 每个配置的 filter 是过滤掉输出文件里面，会出现高级别文件，依然出现低级别的日志信息，通过filter 过滤只记录本级别的日志 -->
+        <!-- ERROR级别日志 -->
+        <RollingRandomAccessFile name="ERROR">
+            <filePattern>${log.home_dir}/%d{yyyy-MM-dd}/${log.fileNamePrefix}-error-%d{yyyyMMdd-HH}.%i.log.gz</filePattern>
+            <fileName>${log.home_dir}/error/${log.fileNamePrefix}-error.log</fileName>
+            <immediateFlush>false</immediateFlush>
+             <!-- 日志输出格式 -->
+            <PatternLayout>
+                <pattern>${log.pattern.file}</pattern>
+                <charset>${log.charset}</charset>
+            </PatternLayout>
+            <!-- 以下是日志压缩包配置 建议1天归档依次 -->
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1" />     
+                <SizeBaseDTriggeringPolicy size="${log.maxFileSize}" />
+            </Policies>
+            <DefaultRolloverStrategy max="${log.rolloverStrategy}" />
+            <Filters>
+                <!-- 只显示error信息 -->  
+                <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </RollingRandomAccessFile>
+    </appenders>
+    <loggers>
+        <root>
+            <level>${log.level}</level>
+            <!-- 控制台输出 -->
+            <appender-ref ref="Console" level="debug" />
+            <!-- 文件输出 -->
+            <appender-ref ref="FILE" />
+            <appender-ref ref="ERROR" />
+        </root>
+    </loggers>
+</configuration>
