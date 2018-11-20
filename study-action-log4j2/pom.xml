@@ -19,5 +19,13 @@
             <artifactId>log4j-api</artifactId>
         </dependency>
     </dependencies>
-
+    <build>
+        <finalName>study-action-log4j2</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>
