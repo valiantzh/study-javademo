@@ -13,7 +13,6 @@ package com.study.redis.demo;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,10 +29,9 @@ public class RedisClientDemo {
     private static Jedis jedis;
     
     public static void connect(){
-        jedis = new Jedis("127.0.0.1",10001);
+        jedis = new Jedis("127.0.0.1",6379);
         log.info("连接成功");
     }
-    @Test
     public static void stringTest(){
         String key = "strdemokey";
         //设置 redis 字符串数据
