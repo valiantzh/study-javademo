@@ -90,7 +90,8 @@ public class ScannerDemo {
 		
 		//funcCheck();
 		
-		funcSum();
+		//funcSum();
+        System.out.println(3|9);
 	}
 
 }
