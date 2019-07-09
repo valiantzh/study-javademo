@@ -16,6 +16,14 @@
         <module>study-action-memcached</module>
         <module>study-action-basis</module>
         <module>study-action-rabbitmq</module>
+        <module>study-action-mqtt</module>
+        <module>study-action-netty-rpc</module>
+        <module>study-action-okhttp3</module>
+        <module>study-action-oss</module>
+        <module>study-action-iot</module>
+        <module>study-action-lombok</module>
+        <module>study-action-logback</module>
+        <module>study-action-java8</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
