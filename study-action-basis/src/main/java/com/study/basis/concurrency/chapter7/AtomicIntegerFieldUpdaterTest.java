@@ -3,7 +3,11 @@ package com.study.basis.concurrency.chapter7;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 
 /**
- * 原子更新字段类
+ * 7.4原子更新字段类
+ *
+ * AtomicIntegerFieldUpdater 原子更新整型字段的更新器
+ * AtomicLongFieldUpdater  原子更新长整型字段的更新器
+ * AtomicStampedReference  原子更新带版本号的引用类型.可以解决CAS进行原子更新时可能出现的ABA问题
  * @author valiantzh
  * @version 1.0
  */

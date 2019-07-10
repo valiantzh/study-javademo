@@ -3,7 +3,10 @@ package com.study.basis.concurrency.chapter7;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
- * 原子更新引用类型
+ * 7.3 原子更新引用类型
+ * AtomicReference 原子更新引用类型
+ * AtomicReferenceFieldUpdater 原子更新引用类型里的字段
+ * AtomicMarkableReference 原子更新带标记位的引用类型
  * @author valiantzh
  * @version 1.0
  */
