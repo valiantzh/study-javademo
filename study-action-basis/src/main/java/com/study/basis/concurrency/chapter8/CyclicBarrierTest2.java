@@ -4,14 +4,12 @@ import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
 /**
- * 同步屏障 CyclicBarrier
- *
- * CyclicBarrier的计数器可以使用reset()方法重置
  * @author valiantzh
  * @version 1.0
  */
-public class CyclicBarrierTest {
-    static CyclicBarrier c = new CyclicBarrier(2);//N=2,表示屏障挡截的线程数
+public class CyclicBarrierTest2 {
+    static CyclicBarrier c = new CyclicBarrier(2, new A());//优先执行barrierAction
+
     public static void main(String[] args) {
         new Thread(new Runnable() {
             @Override
@@ -24,7 +22,6 @@ public class CyclicBarrierTest {
                     e.printStackTrace();
                 }
                 System.out.println(1);
-
             }
         }).start();
 
@@ -36,6 +33,11 @@ public class CyclicBarrierTest {
             e.printStackTrace();
         }
         System.out.println(2);
-
+    }
+    static class A implements Runnable{
+        @Override
+        public void run() {
+            System.out.println(3);
+        }
     }
 }

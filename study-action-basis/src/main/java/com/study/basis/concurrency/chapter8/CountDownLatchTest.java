@@ -5,6 +5,8 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 等待多线程完成的CountDownLatch
+ *
+ * CountDownLatch的计数器智能使用一次
  * @author valiantzh
  * @version 1.0
  */
