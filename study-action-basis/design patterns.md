@@ -109,3 +109,4 @@
 >https://blog.csdn.net/zhangerqing/article/details/8239539
 >https://blog.csdn.net/zhangerqing/article/details/8243942
 >https://blog.csdn.net/zhangerqing/article/details/8245537
+>https://www.runoob.com/design-pattern/strategy-pattern.html
