@@ -1,7 +1,7 @@
 /**
  * 
  * File: Factory.java <br/>
- * Package: com.study.basis.thread.demo1 <br/>
+ * Package: com.study.basis.thread.ch2 <br/>
  * Description:TODO(用一句话描述该文件做什么) <br/>
  * @author zhengxy
  * @Date 2018年10月30日 下午4:09:43
