@@ -1,15 +1,19 @@
 package com.study.basis.structure.list;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.ListIterator;
 
 /*
  * LinkedList同时表现出了双端队列、栈的用法。功能非常强大
  */
-public class LinkedListTest
-{
-    public static void main(String[] args) 
-    {
+public class LinkedListTest {
+    public static void main(String[] args) {
         LinkedList books = new LinkedList();
+
+        books.add("Spring Cloud");
+        books.addLast("微服务");
+        books.addFirst("区块链");
+
 
         //将字符串元素加入队列的尾部(双端队列)
         books.offer("疯狂Java讲义");
@@ -20,11 +24,13 @@ public class LinkedListTest
         //将字符串元素添加到队列的头(相当于栈的顶部)
         books.offerFirst("疯狂Android讲义");
 
-        for (int i = 0; i < books.size() ; i++ )
-        {
-            System.out.println(books.get(i));
-        }
+        //
+        books.add(books.size(), "企业IT架构之道");
 
+        for (int i = 0; i < books.size(); i++) {
+            System.out.println(i+ ">>"+ books.get(i));
+        }
+        System.out.println("\n----- -----");
         //访问、并不删除栈顶的元素
         System.out.println(books.peekFirst());
         //访问、并不删除队列的最后一个元素
@@ -38,5 +44,11 @@ public class LinkedListTest
         //下面输出将看到队列中只剩下中间一个元素：
         //轻量级Java EE企业应用实战
         System.out.println(books);
+
+        ListIterator lit = books.listIterator();
+        while (lit.hasNext()) {
+            System.out.println(lit.next());
+            //lit.add("-------分隔符-------");
+        }
     }
 }

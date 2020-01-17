@@ -83,7 +83,32 @@ public class ScannerDemo {
         System.out.println(m + "个数的平均值是" + (sum / m));
         scan.close();
 	}
+	private static String toQuoteStr(String str){
+        System.out.println(">>>>> fromStr:"+ str +"");
+        String[] strList = str.split(",");
+        System.out.println(">>>>> length:"+ strList.length);
+        String toStr = str;
+        if(strList.length >1){
+            StringBuffer quoteStr = new StringBuffer();
+            for(String tmp: strList){
+                System.out.println(tmp);
+                quoteStr.append(",").append("\'").append(tmp).append("\'");
+            }
+            toStr = quoteStr.substring(1);
+        }
+        System.out.println(">>>>> toStr:"+  toStr);
+        return toStr;
+    }
 	public static void main(String[] args) {
+        String str1 = "1,2,3,4,,";
+        String str2 = "hello";
+        String str3 = "hello,,3,,";
+        System.out.println(str1.indexOf(","));
+        System.out.println(str2.indexOf(","));
+        System.out.println(str3.indexOf(","));
+        toQuoteStr(str1);
+        toQuoteStr(str2);
+        toQuoteStr(str3);
 		//funcNext();
 		
 		//funcNextLine();

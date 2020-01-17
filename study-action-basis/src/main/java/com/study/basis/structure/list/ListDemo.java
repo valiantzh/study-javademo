@@ -94,7 +94,7 @@ public class ListDemo {
 
         System.out.println("....开始测试删除元素..........");
 
-        // 随机读取元素测试
+        // 随机删除元素测试
         deleteData(arrayList,"ArrayList") ;
         deleteData(linkedList,"LinkedList") ;
         deleteData(vector,"Vector") ;
