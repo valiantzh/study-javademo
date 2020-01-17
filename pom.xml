@@ -24,6 +24,7 @@
         <module>study-action-lombok</module>
         <module>study-action-logback</module>
         <module>study-action-java8</module>
+        <module>study-action-netty-tcp</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
