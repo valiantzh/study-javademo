@@ -12,7 +12,7 @@
     <artifactId>study-action-mqtt</artifactId>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <pahoclientmqtt.version>1.2.0</pahoclientmqtt.version>
+        <pahoclientmqtt.version>1.2.1</pahoclientmqtt.version>
     </properties>
     <dependencies>
         <!--阿里 FastJson依赖 -->
